@@ -250,9 +250,16 @@ int main() {
 
         switch (choice) {
             case 1:
-                cout << "Digite um valor para inserir: ";
-                cin >> value;
-                root = insertRec(root, value);
+                int qtd;
+                cout << "Digite a quantidade de valores a serem inseridos: ";
+                cin >> qtd;
+
+                cout << "Digite os valores para inserir: ";
+                for (int i = 0; i < qtd; i++) {
+                    int v;
+                    cin >> v;
+                    root = insertRec(root, v);
+                }
                 break;
             case 2:
                 cout << "Digite um valor para buscar: ";

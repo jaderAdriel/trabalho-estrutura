@@ -197,9 +197,16 @@ int main() {
 
         switch (choice) {
             case 1:
-                cout << "Digite o valor para inserir: ";
-                cin >> key;
-                root = insert(root, key);
+                int qtd;
+                cout << "Digite a quantidade de valores a serem inseridos: ";
+                cin >> qtd;
+
+                cout << "Digite os valores para inserir: ";
+                for (int i = 0; i < qtd; i++) {
+                    int v;
+                    cin >> v;
+                    root = insert(root, v);
+                }
                 break;
             case 2:
                 cout << "Digite o valor para remover: ";
