@@ -145,25 +145,24 @@ void generateGraphviz(Node* node, ofstream& file, int& nodeId) {
     // Cria um nó no formato DOT
     file << "  node" << nodeId << " [label=\"" << node->value << "\"];\n";
 
-    // Salva o nodeId atual para restaurar após processar os filhos
-    int currentNodeId = nodeId;
+    // Cria uma variável para o próximo nodeId
+    int nextNodeId = nodeId + 1;
 
     // Se houver filho à esquerda, cria a aresta e chama recursivamente
     if (node->left != nullptr) {
-        file << "  node" << currentNodeId << " -> node" << ++nodeId << ";\n";
-        generateGraphviz(node->left, file, nodeId);
+        file << "  node" << nodeId << " -> node" << nextNodeId << ";\n";
+        generateGraphviz(node->left, file, nextNodeId);
     }
 
     // Se houver filho à direita, cria a aresta e chama recursivamente
     if (node->right != nullptr) {
-        file << "  node" << currentNodeId << " -> node" << ++nodeId << ";\n";
-        generateGraphviz(node->right, file, nodeId);
+        file << "  node" << nodeId << " -> node" << nextNodeId << ";\n";
+        generateGraphviz(node->right, file, nextNodeId);
     }
 
-    // Restaura o nodeId para o próximo nó no mesmo nível
-    nodeId = currentNodeId + 1;
+    // Incrementa o nodeId após processar os filhos
+    nodeId = nextNodeId;
 }
-
 // Função para gerar o arquivo DOT e salvar o gráfico
 void saveGraphToFile(Node* root, const string& filename) {
     ofstream file(filename);
